@@ -31,8 +31,8 @@ function menu_tree(string $location = 'main'): array
 
 function site_layout(string $title, string $content, array $opts = []): void
 {
-    $siteName = setting('site_name', 'MTs Al-Hidayah');
-    $fullTitle = $title && $title !== $siteName ? $title . ' · ' . $siteName : $siteName . ' ' . setting('site_city', 'Depok');
+    $siteName = setting('site_name', 'MTs Contoh');
+    $fullTitle = $title && $title !== $siteName ? $title . ' · ' . $siteName : trim($siteName . ' ' . setting('site_city', ''));
     view('site/layout', [
         'title' => $fullTitle,
         'description' => $opts['description'] ?? setting('meta_description'),

@@ -19,14 +19,14 @@ $nav = [
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
-<title><?= e($title) ?> · Admin <?= e(setting('site_name', 'MTs Al-Hidayah')) ?></title>
+<title><?= e($title) ?> · Admin <?= e(setting('site_name', 'MTs Contoh')) ?></title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="<?= e(url('assets/css/admin.css')) ?>?v=1">
 </head>
 <body class="admin">
 <aside class="side" id="side">
-  <a class="side-brand" href="<?= e(url('admin')) ?>"><span class="logo-mark">AH</span><span><strong><?= e(setting('site_name', 'MTs Al-Hidayah')) ?></strong><small>Panel admin</small></span></a>
+  <a class="side-brand" href="<?= e(url('admin')) ?>"><span class="logo-mark">MC</span><span><strong><?= e(setting('site_name', 'MTs Contoh')) ?></strong><small>Panel admin</small></span></a>
   <nav aria-label="Menu admin">
     <?php foreach ($nav as $group => $items): ?>
       <span class="side-group"><?= e($group) ?></span>
