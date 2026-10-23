@@ -12,14 +12,14 @@ function seed_content(int $authorId): void
     $now = now();
 
     foreach ([
-        'site_name' => 'MTs Al-Hidayah', 'site_city' => 'Depok', 'tagline' => 'Madrasah Tsanawiyah · Depok',
-        'address' => '[Alamat lengkap madrasah], Kota Depok, Jawa Barat [Kode pos]', 'email' => 'info@mtsalhidayahdepok.sch.id',
+        'site_name' => 'MTs Contoh', 'site_city' => '[Kota]', 'tagline' => 'Madrasah Tsanawiyah · [Kota]',
+        'address' => '[Alamat lengkap madrasah], [Kota], [Provinsi] [Kode pos]', 'email' => 'info@namamadrasah.sch.id',
         'phone' => '[021-0000-0000]', 'whatsapp' => '6281200000000', 'office_hours' => "Senin – Jumat: [07.00 – 15.00 WIB]\nSabtu: [07.00 – 12.00 WIB]",
         'footer_about' => 'Madrasah Tsanawiyah di bawah naungan [Nama Yayasan] dan pembinaan Kementerian Agama.',
         'instagram' => 'https://instagram.com/', 'youtube' => 'https://youtube.com/', 'facebook' => 'https://facebook.com/', 'tiktok' => '',
         'whatsapp_channel' => '', 'npsn' => '[00000000]', 'nsm' => '[000000000000]', 'cta_label' => 'Daftar PPDB', 'cta_url' => 'ppdb',
-        'primary_color' => '#0E4D3A', 'meta_description' => 'Website resmi MTs Al-Hidayah Depok: profil madrasah, berita, galeri, dan PPDB online.',
-        'map_embed' => '', 'map_link' => 'https://maps.google.com/?q=MTs+Al-Hidayah+Depok',
+        'primary_color' => '#0E4D3A', 'meta_description' => 'Website resmi MTs Contoh: profil madrasah, berita, galeri, dan PPDB online.',
+        'map_embed' => '', 'map_link' => 'https://maps.google.com/?q=Nama+Madrasah',
     ] as $k => $v) set_setting($k, $v);
 
     // Categories and posts
@@ -27,11 +27,11 @@ function seed_content(int $authorId): void
     foreach (['Kegiatan', 'Prestasi', 'Pengumuman', 'Artikel'] as $c) $cat[$c] = insert('categories', ['name' => $c, 'slug' => slugify($c)]);
     $note = '<p><em>Ini contoh berita bawaan. Ubah atau hapus dari panel admin, menu Berita.</em></p>';
     $posts = [
-        ['Siswa MTs Al-Hidayah raih juara KSM Matematika tingkat kota', 'Prestasi', 'trofi', 1, 'Tim olimpiade madrasah membawa pulang juara pada Kompetisi Sains Madrasah tingkat Kota Depok.'],
+        ['Siswa MTs Contoh raih juara KSM Matematika tingkat kota', 'Prestasi', 'trofi', 1, 'Tim olimpiade madrasah membawa pulang juara pada Kompetisi Sains Madrasah tingkat [Kota].'],
         ['Peringatan Maulid Nabi bersama wali murid', 'Kegiatan', 'berita2', 0, 'Seluruh warga madrasah memperingati Maulid Nabi dengan shalawat, tausiyah, dan santunan.'],
         ['Jadwal Asesmen Akhir Semester ganjil', 'Pengumuman', 'ujian', 0, 'Asesmen Akhir Semester ganjil dilaksanakan berbasis komputer. Simak jadwal dan ketentuannya.'],
         ['Wisuda tahfidz angkatan [tahun]', 'Kegiatan', 'wisuda', 0, 'Puluhan siswa diwisuda setelah menuntaskan target hafalan Al-Qur\'an.'],
-        ['Tim pencak silat juara O2SN Kota Depok', 'Prestasi', 'silat', 0, 'Atlet pencak silat madrasah meraih medali pada ajang O2SN tingkat kota.'],
+        ['Tim pencak silat juara O2SN [Kota]', 'Prestasi', 'silat', 0, 'Atlet pencak silat madrasah meraih medali pada ajang O2SN tingkat kota.'],
         ['Tips mendampingi anak belajar di rumah', 'Artikel', 'kelas', 0, 'Beberapa kebiasaan sederhana yang membantu anak belajar lebih teratur di rumah.'],
     ];
     foreach ($posts as $i => [$title, $c, $cover, $feat, $exc]) {
@@ -57,7 +57,7 @@ function seed_content(int $authorId): void
     $albumIds = [];
     $k = 0;
     foreach ($albums as $title => $photos) {
-        $aid = insert('albums', ['title' => $title, 'slug' => unique_slug('albums', slugify($title)), 'description' => 'Dokumentasi ' . strtolower($title) . ' MTs Al-Hidayah Depok.',
+        $aid = insert('albums', ['title' => $title, 'slug' => unique_slug('albums', slugify($title)), 'description' => 'Dokumentasi ' . strtolower($title) . ' MTs Contoh.',
             'cover' => $img($photos[0]), 'event_date' => date('Y-m-d', strtotime('-' . (++$k * 12) . ' days')), 'created_at' => $now]);
         $albumIds[$title] = $aid;
         foreach ($photos as $i => $p) insert('photos', ['album_id' => $aid, 'file' => $img($p), 'caption' => '', 'sort' => $i]);
@@ -84,7 +84,7 @@ function seed_content(int $authorId): void
     $pages = [];
     $pages['beranda'] = ['Beranda', [
         ['type' => 'hero', 'eyebrow' => 'PPDB TAHUN AJARAN [2027/2028] TELAH DIBUKA', 'title' => 'Tumbuh berilmu, beriman, dan berakhlak mulia.',
-            'subtitle' => 'MTs Al-Hidayah Depok mendampingi setiap siswa menguasai ilmu pengetahuan, mencintai Al-Qur\'an, dan siap melangkah ke jenjang berikutnya.',
+            'subtitle' => 'MTs Contoh mendampingi setiap siswa menguasai ilmu pengetahuan, mencintai Al-Qur\'an, dan siap melangkah ke jenjang berikutnya.',
             'image' => $img('hero'), 'btn1_label' => 'Daftar Sekarang', 'btn1_url' => 'ppdb', 'btn2_label' => 'Kenali Madrasah', 'btn2_url' => 'profil',
             'badges' => [['icon' => 'medal', 'text' => 'Terakreditasi [A]'], ['icon' => 'book', 'text' => 'Kurikulum Merdeka · Kemenag'], ['icon' => 'check', 'text' => 'NPSN [00000000]']],
             'card_label' => 'Gelombang 1 ditutup', 'card_text' => '[Tanggal penutupan]'],
@@ -96,7 +96,7 @@ function seed_content(int $authorId): void
             ['icon' => 'calendar', 'title' => 'Kalender', 'text' => 'Agenda akademik', 'url' => 'akademik#kalender']]],
         ['type' => 'text_image', 'eyebrow' => 'SAMBUTAN KEPALA MADRASAH', 'title' => 'Assalamu\'alaikum warahmatullahi wabarakatuh.',
             'body' => '<p>[Paragraf sambutan: ucapan selamat datang, komitmen madrasah terhadap mutu pendidikan, pembinaan akhlak, dan ajakan kepada orang tua untuk bersama-sama mendidik putra-putri.]</p><p>[Paragraf kedua: harapan untuk siswa dan peran website sebagai jembatan informasi madrasah.]</p>',
-            'image' => $img('kepala'), 'image_side' => 'left', 'quote_mark' => true, 'sign_name' => '[Nama Kepala Madrasah], [Gelar]', 'sign_role' => 'Kepala MTs Al-Hidayah Depok',
+            'image' => $img('kepala'), 'image_side' => 'left', 'quote_mark' => true, 'sign_name' => '[Nama Kepala Madrasah], [Gelar]', 'sign_role' => 'Kepala MTs Contoh',
             'btn_label' => 'Baca sambutan lengkap', 'btn_url' => 'profil#sambutan'],
         ['type' => 'stats', 'items' => [['value' => '[000]', 'label' => 'Siswa aktif'], ['value' => '[00]', 'label' => 'Guru dan tenaga kependidikan'],
             ['value' => '[00]', 'label' => 'Prestasi tahun ini'], ['value' => '[00]', 'label' => 'Ekstrakurikuler']]],
@@ -110,17 +110,17 @@ function seed_content(int $authorId): void
         ['type' => 'gallery', 'eyebrow' => 'KEHIDUPAN SISWA', 'title' => 'Galeri & ekstrakurikuler', 'link_label' => 'Buka galeri', 'link_url' => 'galeri',
             'album' => (string)$albumIds['Kegiatan madrasah'], 'limit' => '6', 'items' => []],
         ['type' => 'quote', 'arabic' => 'طَلَبُ الْعِلْمِ فَرِيضَةٌ عَلَى كُلِّ مُسْلِمٍ', 'text' => '"Menuntut ilmu itu wajib atas setiap muslim."', 'source' => 'HR. Ibnu Majah'],
-        ['type' => 'cta', 'title' => 'Bergabung bersama keluarga besar MTs Al-Hidayah.', 'text' => 'Pendaftaran peserta didik baru tahun ajaran [2027/2028] dapat dilakukan sepenuhnya secara online.',
+        ['type' => 'cta', 'title' => 'Bergabung bersama keluarga besar MTs Contoh.', 'text' => 'Pendaftaran peserta didik baru tahun ajaran [2027/2028] dapat dilakukan sepenuhnya secara online.',
             'image' => '', 'btn1_label' => 'Daftar PPDB Online', 'btn1_url' => 'ppdb', 'btn2_label' => 'Tanya via WhatsApp', 'btn2_url' => 'https://wa.me/6281200000000'],
     ]];
 
     $pages['profil'] = ['Profil', [
-        $P('Profil madrasah', 'Mengenal sejarah, visi, pengelola, dan fasilitas MTs Al-Hidayah Depok.', $img('masjid')),
+        $P('Profil madrasah', 'Mengenal sejarah, visi, pengelola, dan fasilitas MTs Contoh.', $img('masjid')),
         ['type' => 'subnav', 'items' => array_map(fn($x) => ['label' => $x[0], 'url' => '#' . $x[1]], [['Sejarah', 'sejarah'], ['Visi & misi', 'visi-misi'], ['Sambutan', 'sambutan'],
             ['Struktur organisasi', 'struktur'], ['Guru & staf', 'guru'], ['Sarana prasarana', 'sarana'], ['Akreditasi', 'akreditasi'], ['Komite', 'komite']])],
-        ['type' => 'timeline', '_anchor' => 'sejarah', 'eyebrow' => 'SEJARAH', 'title' => 'Perjalanan MTs Al-Hidayah Depok',
+        ['type' => 'timeline', '_anchor' => 'sejarah', 'eyebrow' => 'SEJARAH', 'title' => 'Perjalanan MTs Contoh',
             'intro' => '[Paragraf sejarah: latar belakang berdirinya madrasah, tokoh pendiri, dan perkembangan dari tahun ke tahun.]', 'items' => [
-                ['year' => '[Tahun]', 'text' => '[Madrasah didirikan oleh Yayasan Al-Hidayah dengan jumlah siswa angkatan pertama.]'],
+                ['year' => '[Tahun]', 'text' => '[Madrasah didirikan oleh Yayasan [Nama Yayasan] dengan jumlah siswa angkatan pertama.]'],
                 ['year' => '[Tahun]', 'text' => '[Memperoleh izin operasional dan NSM dari Kementerian Agama.]'],
                 ['year' => '[Tahun]', 'text' => '[Pembangunan gedung baru, masjid, dan laboratorium.]'],
                 ['year' => '[Tahun]', 'text' => '[Terakreditasi [A] oleh BAN-S/M.]']]],
@@ -132,7 +132,7 @@ function seed_content(int $authorId): void
             'goals' => array_map(fn($t) => ['text' => $t], ['[Lulusan hafal minimal [0] juz Al-Qur\'an.]', '[Lulusan diterima di SMA/MA/SMK favorit.]', '[Siswa meraih prestasi di tingkat kota hingga nasional.]'])],
         ['type' => 'text_image', '_anchor' => 'sambutan', 'eyebrow' => 'SAMBUTAN KEPALA MADRASAH', 'title' => 'Assalamu\'alaikum warahmatullahi wabarakatuh.',
             'body' => '<p>[Isi sambutan lengkap kepala madrasah: ucapan selamat datang, komitmen mutu pendidikan, pembinaan akhlak, dan ajakan kepada orang tua untuk bersama mendidik putra-putri.]</p><p>[Paragraf penutup dan harapan.]</p>',
-            'image' => $img('kepala'), 'image_side' => 'right', 'quote_mark' => true, 'sign_name' => '[Nama Kepala Madrasah], [Gelar]', 'sign_role' => 'Kepala MTs Al-Hidayah Depok'],
+            'image' => $img('kepala'), 'image_side' => 'right', 'quote_mark' => true, 'sign_name' => '[Nama Kepala Madrasah], [Gelar]', 'sign_role' => 'Kepala MTs Contoh'],
         ['type' => 'org_chart', '_anchor' => 'struktur', '_bg' => 'soft', 'eyebrow' => 'STRUKTUR ORGANISASI', 'title' => 'Pengelola madrasah', 'items' => [
             ['level' => '1', 'role' => 'Ketua Yayasan', 'name' => '[Nama]', 'highlight' => false], ['level' => '1', 'role' => 'Kepala Madrasah', 'name' => '[Nama]', 'highlight' => true],
             ['level' => '1', 'role' => 'Ketua Komite', 'name' => '[Nama]', 'highlight' => false],
@@ -157,7 +157,7 @@ function seed_content(int $authorId): void
     ]];
 
     $pages['akademik'] = ['Akademik', [
-        $P('Akademik', 'Kurikulum, program unggulan, kalender, jadwal, dan layanan belajar digital MTs Al-Hidayah.', $img('kelas')),
+        $P('Akademik', 'Kurikulum, program unggulan, kalender, jadwal, dan layanan belajar digital MTs Contoh.', $img('kelas')),
         ['type' => 'subnav', 'items' => array_map(fn($x) => ['label' => $x[0], 'url' => '#' . $x[1]], [['Kurikulum', 'kurikulum'], ['Program unggulan', 'program'],
             ['Kalender akademik', 'kalender'], ['Jadwal pelajaran', 'jadwal'], ['E-Learning & CBT', 'digital'], ['Unduhan', 'unduhan']])],
         ['type' => 'text_image', '_anchor' => 'kurikulum', 'eyebrow' => 'KURIKULUM', 'title' => 'Kurikulum Merdeka, berciri khas madrasah', 'image' => $img('tutor'), 'image_side' => 'right',
@@ -203,7 +203,7 @@ function seed_content(int $authorId): void
                 ['image' => $img('siswi'), 'title' => 'PMR', 'meta' => '[Hari], [jam] · Pembina [Nama]']]],
         ['type' => 'stats', '_anchor' => 'prestasi', 'items' => [['value' => '[00]', 'label' => 'Piala tahun ini'], ['value' => '[000]', 'label' => 'Total prestasi']]],
         ['type' => 'table', 'eyebrow' => 'PRESTASI SISWA', 'title' => 'Kebanggaan madrasah', 'header' => 'Tahun|Lomba|Tingkat|Hasil',
-            'rows' => "[Tahun]|[KSM Matematika]|Kota Depok|Juara [1]\n[Tahun]|[MTQ cabang tahfidz 5 juz]|Provinsi Jawa Barat|Juara [2]\n[Tahun]|[Pencak silat O2SN]|Kota Depok|Juara [1]\n[Tahun]|[Lomba pidato bahasa Arab]|Se-Jabodetabek|Juara [3]\n[Tahun]|[Kaligrafi AKSIOMA]|Provinsi Jawa Barat|Harapan [1]", 'note' => ''],
+            'rows' => "[Tahun]|[KSM Matematika]|[Kota]|Juara [1]\n[Tahun]|[MTQ cabang tahfidz 5 juz]|Provinsi Jawa Barat|Juara [2]\n[Tahun]|[Pencak silat O2SN]|[Kota]|Juara [1]\n[Tahun]|[Lomba pidato bahasa Arab]|Se-Jabodetabek|Juara [3]\n[Tahun]|[Kaligrafi AKSIOMA]|Provinsi Jawa Barat|Harapan [1]", 'note' => ''],
         ['type' => 'faq', '_anchor' => 'tata-tertib', '_bg' => 'soft', 'eyebrow' => 'TATA TERTIB', 'title' => 'Aturan bersama di madrasah', 'link_label' => 'Unduh tata tertib lengkap', 'link_url' => 'unduhan', 'items' => [
             ['q' => 'Kehadiran', 'a' => 'Siswa hadir paling lambat pukul [06.45]. Izin tidak masuk disampaikan orang tua melalui wali kelas.'],
             ['q' => 'Seragam & penampilan', 'a' => 'Seragam sesuai jadwal harian, rapi, dan menutup aurat. [Rincian seragam per hari.]'],
@@ -215,12 +215,12 @@ function seed_content(int $authorId): void
             'image' => $img('wisuda'), 'btn1_label' => 'Lihat pengumuman', 'btn1_url' => 'berita', 'btn2_label' => '', 'btn2_url' => ''],
         ['type' => 'stats', '_anchor' => 'alumni', 'items' => [['value' => '[0.000]', 'label' => 'Alumni terdata'], ['value' => '[00]%', 'label' => 'Lanjut ke MA/SMA negeri'], ['value' => '[000]', 'label' => 'Alumni penghafal Al-Qur\'an']]],
         ['type' => 'testimonials', 'eyebrow' => 'ALUMNI', 'title' => 'Jejak lulusan kami', 'items' => [
-            ['quote' => '[Kutipan singkat tentang pengalaman belajar di MTs Al-Hidayah.]', 'name' => '[Nama alumni]', 'role' => 'Angkatan [tahun] · kini di [MAN/SMA]'],
+            ['quote' => '[Kutipan singkat tentang pengalaman belajar di MTs Contoh.]', 'name' => '[Nama alumni]', 'role' => 'Angkatan [tahun] · kini di [MAN/SMA]'],
             ['quote' => '[Kutipan singkat tentang program tahfidz atau ekstrakurikuler.]', 'name' => '[Nama alumni]', 'role' => 'Angkatan [tahun] · kini di [pesantren]'],
             ['quote' => '[Kutipan singkat tentang guru dan pembinaan karakter.]', 'name' => '[Nama alumni]', 'role' => 'Angkatan [tahun] · kini di [universitas]']]],
     ]];
 
-    $pages['berita'] = ['Berita', [$P('Berita & pengumuman', 'Kabar terbaru, prestasi, dan pengumuman resmi MTs Al-Hidayah Depok.'), ['type' => 'posts', 'mode' => 'full', 'limit' => '9', 'category' => '']]];
+    $pages['berita'] = ['Berita', [$P('Berita & pengumuman', 'Kabar terbaru, prestasi, dan pengumuman resmi MTs Contoh.'), ['type' => 'posts', 'mode' => 'full', 'limit' => '9', 'category' => '']]];
 
     $pages['galeri'] = ['Galeri', [
         $P('Galeri', 'Dokumentasi kegiatan, ekstrakurikuler, dan fasilitas madrasah.'),
@@ -301,7 +301,7 @@ function seed_pdf(string $path, string $title): int
 {
     if (!is_dir(dirname($path))) mkdir(dirname($path), 0775, true);
     $t = str_replace(['\\', '(', ')'], ['\\\\', '\\(', '\\)'], iconv('UTF-8', 'Windows-1252//TRANSLIT', $title) ?: $title);
-    $stream = "BT /F1 20 Tf 60 760 Td ($t) Tj /F1 11 Tf 0 -28 Td (MTs Al-Hidayah Depok - contoh dokumen, ganti dari panel admin.) Tj ET";
+    $stream = "BT /F1 20 Tf 60 760 Td ($t) Tj /F1 11 Tf 0 -28 Td (MTs Contoh - contoh dokumen, ganti dari panel admin.) Tj ET";
     $objs = ['<< /Type /Catalog /Pages 2 0 R >>', '<< /Type /Pages /Kids [3 0 R] /Count 1 >>',
         '<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 4 0 R >> >> /Contents 5 0 R >>',
         '<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>',

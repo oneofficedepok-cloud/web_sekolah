@@ -46,7 +46,7 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST') {
 <body class="auth">
 <form class="auth-card" method="post" action="<?= e(url('setup')) ?>">
   <?= csrf_field() ?>
-  <span class="logo-mark big">AH</span>
+  <span class="logo-mark big">MC</span>
   <h1>Pemasangan website</h1>
   <p class="muted">Buat akun admin pertama. Akun ini bisa menambah pengguna lain nanti.</p>
   <?php if ($error): ?><div class="flash error" role="alert"><?= e($error) ?></div><?php endif ?>

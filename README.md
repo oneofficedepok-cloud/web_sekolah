@@ -1,4 +1,4 @@
-# Website MTs Al-Hidayah Depok + Panel Admin (CMS)
+# Website MTs Contoh + Panel Admin (CMS)
 
 Website madrasah lengkap dengan panel admin. Semua isi website bisa diubah dari admin tanpa menyentuh kode.
 

@@ -1,7 +1,7 @@
 <?php
 /** @var string $title @var string $description @var string $image @var string $content @var string $activePath */
-$siteName = setting('site_name', 'MTs Al-Hidayah');
-$tagline = setting('tagline', 'Madrasah Tsanawiyah · Depok');
+$siteName = setting('site_name', 'MTs Contoh');
+$tagline = setting('tagline', 'Madrasah Tsanawiyah');
 $logo = setting('logo');
 $main = menu_tree('main');
 $top = menu_tree('top');
@@ -15,7 +15,7 @@ $isActive = function (array $m) use ($cur, &$isActive): bool {
     foreach ($m['children'] as $c) if ($isActive($c)) return true;
     return $h !== '/' && $h === $cur;
 };
-$logoSvg = '<svg width="52" height="52" viewBox="0 0 52 52" aria-hidden="true"><rect x="8" y="8" width="36" height="36" rx="4" fill="#0E4D3A"/><rect x="8" y="8" width="36" height="36" rx="4" fill="#0E4D3A" transform="rotate(45 26 26)"/><circle cx="26" cy="26" r="12" fill="none" stroke="#E9C978" stroke-width="1.5"/><text x="26" y="31" text-anchor="middle" font-family="Amiri, serif" font-size="15" font-weight="700" fill="#E9C978">AH</text></svg>';
+$logoSvg = '<svg width="52" height="52" viewBox="0 0 52 52" aria-hidden="true"><rect x="8" y="8" width="36" height="36" rx="4" fill="#0E4D3A"/><rect x="8" y="8" width="36" height="36" rx="4" fill="#0E4D3A" transform="rotate(45 26 26)"/><circle cx="26" cy="26" r="12" fill="none" stroke="#E9C978" stroke-width="1.5"/><text x="26" y="31" text-anchor="middle" font-family="Amiri, serif" font-size="15" font-weight="700" fill="#E9C978">MC</text></svg>';
 $socials = ['instagram' => 'Instagram', 'youtube' => 'YouTube', 'facebook' => 'Facebook', 'tiktok' => 'TikTok'];
 ?><!doctype html>
 <html lang="id">
@@ -81,7 +81,7 @@ $socials = ['instagram' => 'Instagram', 'youtube' => 'YouTube', 'facebook' => 'F
 <footer class="site-footer">
   <div class="wrap footer-grid">
     <div class="f-col">
-      <span class="f-brand"><?= $logo ? '<img src="' . e(media($logo)) . '" alt="" class="brand-logo sm">' : str_replace(['52', '#0E4D3A'], ['44', '#1B6650'], $logoSvg) ?><strong><?= e($siteName . ' ' . setting('site_city', 'Depok')) ?></strong></span>
+      <span class="f-brand"><?= $logo ? '<img src="' . e(media($logo)) . '" alt="" class="brand-logo sm">' : str_replace(['52', '#0E4D3A'], ['44', '#1B6650'], $logoSvg) ?><strong><?= e(trim($siteName . ' ' . setting('site_city', ''))) ?></strong></span>
       <p><?= e(setting('footer_about')) ?></p>
       <div class="socials">
         <?php foreach ($socials as $k => $label): if (setting($k)): ?><a href="<?= e(setting($k)) ?>" target="_blank" rel="noopener" aria-label="<?= $label ?>"><?= icon($k) ?></a><?php endif; endforeach ?>
@@ -103,7 +103,7 @@ $socials = ['instagram' => 'Instagram', 'youtube' => 'YouTube', 'facebook' => 'F
       <span><?= nl2br(e(setting('office_hours'))) ?></span>
     </div>
   </div>
-  <div class="f-bottom"><div class="wrap f-bottom-in"><span>© <?= date('Y') ?> <?= e($siteName . ' ' . setting('site_city', 'Depok')) ?>. Hak cipta dilindungi.</span><span><?= e(trim((setting('npsn') ? 'NPSN ' . setting('npsn') : '') . (setting('nsm') ? ' · NSM ' . setting('nsm') : ''), ' ·')) ?></span></div></div>
+  <div class="f-bottom"><div class="wrap f-bottom-in"><span>© <?= date('Y') ?> <?= e(trim($siteName . ' ' . setting('site_city', ''))) ?>. Hak cipta dilindungi.</span><span><?= e(trim((setting('npsn') ? 'NPSN ' . setting('npsn') : '') . (setting('nsm') ? ' · NSM ' . setting('nsm') : ''), ' ·')) ?></span></div></div>
 </footer>
 <?php if ($waLink): ?><a class="wa-float" href="<?= e($waLink) ?>" target="_blank" rel="noopener" aria-label="Chat WhatsApp"><?= icon('wa') ?></a><?php endif ?>
 <div class="lightbox" hidden role="dialog" aria-modal="true" aria-label="Foto"><button type="button" class="lb-close" aria-label="Tutup"><?= icon('close') ?></button><button type="button" class="lb-prev" aria-label="Sebelumnya">‹</button><figure><img alt=""><figcaption></figcaption></figure><button type="button" class="lb-next" aria-label="Berikutnya">›</button></div>
