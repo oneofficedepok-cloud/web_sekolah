@@ -1,0 +1,19 @@
+# Website sekolah CMS: semua alamat diarahkan ke index.php
+Options -Indexes
+DirectoryIndex index.php
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  # Folder dan file internal tidak boleh dibuka dari browser
+  RewriteRule ^(app|storage)(/|$) - [F,L]
+  RewriteRule ^config(\.sample)?\.php$ - [F,L]
+  RewriteRule \.(sqlite|sqlite-wal|sqlite-shm|md)$ - [F,L]
+  # File atau folder yang benar-benar ada dilayani langsung, sisanya ke index.php
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^ index.php [L]
+</IfModule>
+
+<FilesMatch "\.(sqlite|sqlite-wal|sqlite-shm|md)$">
+  Require all denied
+</FilesMatch>
