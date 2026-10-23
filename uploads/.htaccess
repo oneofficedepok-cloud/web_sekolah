@@ -1,0 +1,11 @@
+# Unggahan hanya boleh berupa file biasa, bukan skrip
+Options -Indexes
+<FilesMatch "\.(php\d?|phtml|phar|pl|py|cgi|sh)$">
+  Require all denied
+</FilesMatch>
+<IfModule mod_php.c>
+  php_flag engine off
+</IfModule>
+<IfModule mod_php8.c>
+  php_flag engine off
+</IfModule>

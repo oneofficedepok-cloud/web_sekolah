@@ -11,7 +11,7 @@ Website madrasah lengkap dengan panel admin. Semua isi website bisa diubah dari 
 ## Cara memasang di cPanel
 
 1. Unggah isi folder ini ke `public_html` (atau subfolder, misalnya `public_html/web-baru`) lewat File Manager, lalu ekstrak.
-2. Pastikan folder `storage/` dan `uploads/` bisa ditulis (izin 755 atau 775).
+2. Pastikan folder `storage/` dan `uploads/` bisa ditulis (izin 755 atau 775). File `.htaccess` (tersembunyi) di folder utama, `app/`, `storage/`, dan `uploads/` wajib ikut terunggah; di File Manager cPanel aktifkan **Settings → Show Hidden Files** untuk mengeceknya.
 3. Buka alamat website di browser. Halaman **Pemasangan** akan muncul otomatis.
 4. Isi nama, nama pengguna, dan kata sandi admin. Biarkan centang "Isi dengan konten contoh" agar website langsung terisi sesuai desain.
 5. Selesai. Panel admin ada di `alamat-website/admin`.
@@ -19,7 +19,7 @@ Website madrasah lengkap dengan panel admin. Semua isi website bisa diubah dari 
 ### Memakai MySQL (opsional)
 
 1. Buat database dan user MySQL di cPanel.
-2. Salin `config.sample.php` menjadi `config.php`, lalu ubah `db_driver` menjadi `'mysql'` dan isi `mysql_host`, `mysql_name`, `mysql_user`, `mysql_pass`.
+2. Salin `config.sample.php` menjadi `config.php`, lalu ubah `db_driver` menjadi `'mysql'` dan isi `mysql_host`, `mysql_database`, `mysql_user`, `mysql_password`.
 3. Buka website, lalu lanjutkan dari langkah 3 di atas. Tabel dibuat otomatis.
 
 ## Mencoba di komputer sendiri

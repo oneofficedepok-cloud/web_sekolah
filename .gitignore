@@ -1,0 +1,8 @@
+# Data milik tiap website, jangan ikut ke repo
+config.php
+storage/*
+!storage/.htaccess
+!storage/.gitkeep
+uploads/*
+!uploads/.htaccess
+!uploads/seed/
